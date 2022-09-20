@@ -46,7 +46,7 @@ export async function handler(chatUpdate) {
                 if (!isNumber(user.exp))
                     user.exp = 0
                 if (!isNumber(user.limit))
-                    user.limit = 100
+                    user.limit = 10
                 if (!isNumber(user.lastclaim))
                     user.lastclaim = 0
                 if (!isNumber(user.pasangan))
@@ -190,8 +190,6 @@ export async function handler(chatUpdate) {
                     user.lastmonthly = 0
                 if (!isNumber(user.lastbunga))
                     user.lastbunga = 0
-                if (!isNumber(user.note))
-                    user.note = 0
                     
                 if (!isNumber(user.premium))
                     user.premium = false
@@ -202,7 +200,7 @@ export async function handler(chatUpdate) {
             } else
                 global.db.data.users[m.sender] = {
                     exp: 0,
-                    limit: 100,
+                    limit: 10,
                     lastclaim: 0,
                     registered: false,
                     name: m.name,
@@ -274,7 +272,6 @@ export async function handler(chatUpdate) {
                     lastweekly: 0,
                     lastmonthly: 0,
                     lastbunga: 0,
-                    note: 0,
                     
                     premium: false,
                     premiumTime: 0,
@@ -338,16 +335,10 @@ export async function handler(chatUpdate) {
                 if (!('self' in settings)) settings.self = false
                 if (!('autoread' in settings)) settings.autoread = true
                 if (!('restrict' in settings)) settings.restrict = true
-                if (!('jadibot' in settings)) settings.jadibot = false
-                if (!('autorestart' in settings)) settings.autorestart = true
-                if (!('restartDB' in settings)) settings.restartDB = 0
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
                 autoread: true,
-                jadibot: false,
-                restrict: true,
-                autorestart: true,
-                restartDB: 0
+                restrict: true
             }
         } catch (e) {
             console.error(e)
@@ -698,21 +689,16 @@ export async function participantsUpdate({ id, participants, action }) {
                                 groupname: await this.getName(id),
                                 membercount: groupMetadata.participants.length
                             })
-    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'WHMODSDEV', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
-    mediaUrl: "https://www.youtube.com/channel/UCMx4e8anOq_Olt2nMSv0Cow",
+    conn.sendButtonDoc(id, text, wm, action == 'add' ? 'ᴡᴇʟᴄᴏᴍᴇ' : 'sᴀʏᴏɴᴀʀᴀᴀ', action === 'add' ? '.intro' : 'ImYanXiao', fkontak, { contextInfo: { externalAdReply: { showAdAttribution: true,
+    mediaUrl: "https://youtu.be/-TleC8rbDT8",
     mediaType: 2, 
-    description: "https://www.youtube.com/channel/UCMx4e8anOq_Olt2nMSv0Cow", 
-    title: 'WH-MODS-BOT-V1-MultiDevice',
+    description: "https://youtu.be/-TleC8rbDT8", 
+    title: 'Elaina-MultiDevice',
     body: wm,
     thumbnail: await(await fetch(action === 'add' ? wel : lea)).buffer(),
     sourceUrl: sgc
      }}
   })
-/*this.sendHydrated(id, text, '➞' + await this.getName(id), await (await fetch((action == 'add' ? wel : lea))).buffer(), sgc, (action == 'add' ? '💌 WELCOME' : '🐾 BYE'), user.split`@`[0], '🌹 USER', [
-      ['ᴍᴇɴᴜ', '/menu'],
-      [(action == 'add' ? '\n\nYAELAH BEBAN GROUP NAMBAH 1 :(' : '\n\nBYE BEBAN! :)'), '...'],
-      [null, null]
-    ], null, false, { mentions: [user] }) */
                     }
                 }
             }
